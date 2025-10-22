@@ -1,355 +1,365 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Ashwin Tiwari - Frontend Developer Portfolio" />
-  <meta name="keywords" content="HTML, CSS, JavaScript, React, Portfolio, Developer, Ashwin" />
-  <meta name="author" content="Ashwin Tiwari" />
-  <title>Ashwin's Portfolio</title>
-
-  <!-- Google Font & AOS -->
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&display=swap" rel="stylesheet" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
+  <title>Hanovix – IT Consulting</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root {
-      --primary-bg: #0b1a40;
-      --secondary-bg: #142a6b;
-      --accent: #3fc1f9;
-      --highlight: #72d0ff;
-      --text: #e6f0ff;
+    /* Custom animations */
+    @keyframes floatUp {
+      0% { transform: translateY(10px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
-
-    body {
-      margin: 0;
-      font-family: 'Rubik', sans-serif;
-      background-color: var(--primary-bg);
-      color: var(--text);
-      scroll-behavior: smooth;
+    .animate-floatUp {
+      animation: floatUp 0.8s ease forwards;
     }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: var(--secondary-bg);
-      padding: 1rem 2rem;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-    }
-
-    nav .left {
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 20px;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    nav ul li a:hover {
-      color: var(--accent);
-    }
-
-    .firstSection {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 140px 40px 80px;
-      flex-wrap: wrap;
-      gap: 40px;
-      min-height: 70vh;
-    }
-
-    .leftSection {
-      flex: 1;
-      font-size: 2.5rem;
-      line-height: 1.3;
-    }
-
-    .leftSection span {
-      color: var(--accent);
-    }
-
-    .btn {
-      padding: 12px 24px;
-      margin-top: 20px;
-      background-color: var(--accent);
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-      color: var(--primary-bg);
-      font-weight: 600;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-      box-shadow: 0 0 10px var(--accent);
-    }
-
-    .btn:hover {
-      background-color: var(--highlight);
-      transform: scale(1.05);
-      box-shadow: 0 0 20px var(--highlight);
-    }
-
-    .rightSection {
-      flex: 1;
-      text-align: center;
-    }
-
-    .rightSection img {
-      max-width: 350px;
-      border-radius: 10px;
-      box-shadow: 0 0 30px var(--accent);
-      transition: transform 0.3s ease;
-    }
-
-    .rightSection img:hover {
-      transform: scale(1.05);
-    }
-
-    section {
-      padding: 60px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 40px;
-      color: var(--highlight);
-      font-weight: 600;
-      text-shadow: 0 0 10px var(--accent);
-    }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
-
-    .project-card {
-      background-color: var(--secondary-bg);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(63, 193, 249, 0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 25px var(--highlight);
-    }
-
-    .project-card h3 {
-      color: var(--accent);
-      margin-top: 0;
-    }
-
-    .project-card a {
-      color: var(--highlight);
-      text-decoration: none;
-      font-weight: 600;
-      margin-right: 10px;
-    }
-
-    .project-card a:hover {
-      text-decoration: underline;
-    }
-
-    #contact {
-      text-align: center;
-    }
-
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 20px;
-      max-width: 600px;
-      margin-inline: auto;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-      background-color: #1b2b58;
-      color: var(--text);
-      box-shadow: inset 0 0 8px #0f1a3a;
-      transition: outline 0.3s ease;
-    }
-
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      outline: 2px solid var(--accent);
-      background-color: #223b7e;
-    }
-
-    .social-icons {
-      margin-top: 20px;
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .social-icons img {
-      width: 30px;
-      filter: drop-shadow(0 0 2px var(--accent));
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-
-    .social-icons img:hover {
-      transform: scale(1.2);
-      filter: drop-shadow(0 0 10px var(--highlight));
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: var(--secondary-bg);
-      color: #a0bfff;
-      font-size: 14px;
-      box-shadow: inset 0 1px 4px #07214d;
+    /* Form input focus styling */
+    input:focus, textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.6);
+      border-color: #3b82f6;
     }
   </style>
 </head>
-<body>
+<body class="bg-gray-900 text-gray-200 font-sans selection:bg-blue-500 selection:text-white">
 
-  <nav>
-    <div class="left">Ashwin's Portfolio</div>
-    <ul class="right">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#certifications">Certifications</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-gray-900 shadow-md">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-3xl font-extrabold text-blue-500 tracking-wide select-none">Hanovix</h1>
+      <nav class="space-x-8 text-gray-400 font-medium">
+        <a href="#services" class="hover:text-blue-500 transition duration-300">Services</a>
+        <a href="#about" class="hover:text-blue-500 transition duration-300">About</a>
+        <a href="#contact" class="hover:text-blue-500 transition duration-300">Contact</a>
+      </nav>
+    </div>
+  </header>
 
   <!-- Hero Section -->
-  <section class="firstSection" id="home">
-    <div class="leftSection" data-aos="fade-right">
-      Hi, I'm <span>Ashwin</span><br />
-      A <span id="element"></span>
-      <br />
-      <a href="Ashwinkumar Tiwari resume (1).docx" download class="btn">Download Resume</a>
-    </div>
-    <div class="rightSection" data-aos="fade-left">
-      <img src="image.png" alt="Ashwin's Photo" />
+  <section id="hero" class="bg-gradient-to-br from-gray-900 via-gray-800 to-black py-28 px-6 text-center max-w-7xl mx-auto">
+    <h2 class="text-5xl md:text-6xl font-extrabold text-blue-500 mb-6 animate-floatUp">Your Trusted IT Consulting Partner</h2>
+    <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-300 mb-10 animate-floatUp" style="animation-delay: 0.2s;">
+      Empowering businesses with tailored IT solutions: Web Development, Cloud Services, Cybersecurity & AI Integration.
+    </p>
+    <a href="#contact" 
+       class="inline-block bg-blue-600 hover:bg-blue-700 transition rounded-lg px-10 py-4 font-semibold text-white text-lg shadow-lg animate-floatUp"
+       style="animation-delay: 0.4s;">
+      Get In Touch
+    </a>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-20 px-6 max-w-7xl mx-auto text-center">
+    <h3 class="text-4xl font-bold text-blue-500 mb-12 tracking-wide">Our Core Services</h3>
+    <div class="grid gap-12 md:grid-cols-3">
+      
+      <!-- Service Card 1 -->
+      <div
+        class="bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer group"
+        aria-label="Web Development Service"
+      >
+        <div class="mb-6 text-blue-400 group-hover:text-blue-500 transition duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12h18M3 6h18M3 18h18" />
+          </svg>
+        </div>
+        <h4 class="text-xl font-semibold mb-3">Web Development</h4>
+        <p class="text-gray-300">Building modern, responsive, and performant websites tailored to your business needs.</p>
+      </div>
+
+      <!-- Service Card 2 -->
+      <div
+        class="bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer group"
+        aria-label="Cloud Solutions Service"
+      >
+        <div class="mb-6 text-blue-400 group-hover:text-blue-500 transition duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 008 0 4 4 0 018 0 4 4 0 01-8 0H3z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 10v4M12 7v7M16 10v4" />
+          </svg>
+        </div>
+        <h4 class="text-xl font-semibold mb-3">Cloud Solutions</h4>
+        <p class="text-gray-300">Scalable infrastructure and DevOps on AWS, Azure, and Google Cloud Platform.</p>
+      </div>
+
+      <!-- Service Card 3 -->
+      <div
+        class="bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer group"
+        aria-label="Cybersecurity & AI Service"
+      >
+        <div class="mb-6 text-blue-400 group-hover:text-blue-500 transition duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 11v10m0-10h4m-4 0h-4" />
+          </svg>
+        </div>
+        <h4 class="text-xl font-semibold mb-3">Cybersecurity & AI</h4>
+        <p class="text-gray-300">Penetration testing, security audits, and AI integration to future-proof your business.</p>
+      </div>
+
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" data-aos="fade-up">
-    <h2 class="section-title">About Me</h2>
-    <p style="text-align: center;">
-      I’m a passionate CSE student at CSMU with strong web dev skills in HTML, CSS, JS, and React.<br />
-      I love building clean UIs and exploring new technologies. Certified in Python, JS, and AI.<br />
-      I'm creative, curious, and always ready to build and collaborate on awesome projects.
-    </p>
-  </section>
-
- <!-- Projects Section -->
-<section id="projects" data-aos="fade-up">
-  <h2 class="section-title">Projects</h2>
-  <div class="project-grid">
-    
-    <div class="project-card">
-      <h3>To-Do List Web App</h3>
-      <p>A simple and elegant JavaScript-based To-Do List app that helps manage daily tasks efficiently. Users can add, mark complete, and delete tasks with ease.</p>
-      <a href="https://github.com/ashwintiwari174/todolist" target="_blank">GitHub</a> | 
-      <a href="https://ashwintiwari174.github.io/todolist/" target="_blank">Live Demo</a>
+<section id="about" class="bg-gray-800 py-24 px-6 max-w-7xl mx-auto rounded-lg shadow-lg">
+  <h3 class="text-5xl font-bold text-blue-500 mb-12 text-center tracking-wide">About Hanovix</h3>
+  <div class="md:flex md:space-x-16 items-start">
+    <!-- Text content -->
+    <div class="md:w-2/3 text-gray-300 space-y-6 text-lg leading-relaxed">
+      <p>
+        Hanovix stands at the forefront of IT consulting with over two decades of industry expertise. Our mission is to empower businesses to harness the full potential of technology, delivering custom solutions that drive growth, efficiency, and innovation.
+      </p>
+      <p>
+        Our approach is deeply collaborative — we work closely with your team to understand your unique challenges and goals, crafting tailored strategies from software development and cloud infrastructure to cutting-edge cybersecurity and AI integration.
+      </p>
+      <p>
+        With a commitment to transparency, quality, and continuous improvement, Hanovix is your trusted partner on the digital transformation journey, helping you stay agile and competitive in an ever-evolving technology landscape.
+      </p>
+      <p>
+        We pride ourselves not only on our technical skills but also on building long-term relationships grounded in trust, reliability, and exceptional service.
+      </p>
     </div>
 
-    <div class="project-card">
-      <h3>Weather App</h3>
-      <p>Uses OpenWeather API to fetch and display real-time weather data with a clean and responsive interface.</p>
-      <a href="#">GitHub</a> | <a href="#">Live Demo</a>
+    <!-- Team Showcase -->
+    <div class="md:w-1/3 mt-12 md:mt-0">
+      <h4 class="text-3xl font-semibold text-blue-400 mb-8 text-center md:text-left">Meet Our Leadership</h4>
+      <ul class="space-y-8">
+        <li class="flex items-center space-x-4">
+          <img src="ashwin.jpg" alt="Ashwin Tiwari" class="w-16 h-16 rounded-full border-2 border-blue-500 shadow-lg" />
+          <div>
+            <p class="text-xl font-semibold text-gray-100">Ashwin Tiwari</p>
+            <p class="text-blue-300 italic text-sm">Founder & CEO</p>
+          </div>
+        </li>
+        <li class="flex items-center space-x-4">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya Sharma" class="w-16 h-16 rounded-full border-2 border-blue-500 shadow-lg" />
+          <div>
+            <p class="text-xl font-semibold text-gray-100">Priya Sharma</p>
+            <p class="text-blue-300 italic text-sm">Head of Cloud Solutions</p>
+          </div>
+        </li>
+        <li class="flex items-center space-x-4">
+          <img src="https://randomuser.me/api/portraits/men/48.jpg" alt="Rohan Patel" class="w-16 h-16 rounded-full border-2 border-blue-500 shadow-lg" />
+          <div>
+            <p class="text-xl font-semibold text-gray-100">Rohan Patel</p>
+            <p class="text-blue-300 italic text-sm">Chief Security Officer</p>
+          </div>
+        </li>
+      </ul>
     </div>
-
   </div>
 </section>
 
+  <!-- Appointment Call-to-Action -->
+  <section class="mt-20 bg-gradient-to-r from-blue-700 to-blue-900 py-14 px-6 max-w-4xl mx-auto rounded-xl text-center shadow-xl">
+    <h4 class="text-3xl font-semibold text-white mb-4">Prefer Scheduling an Appointment?</h4>
+    <p class="text-blue-200 mb-8 max-w-xl mx-auto">Book a convenient time slot to discuss your project and IT needs with our experts.</p>
+    <a href="https://forms.gle/YOUR_FORM_LINK" target="_blank" rel="noopener" 
+       class="inline-block bg-white text-blue-800 font-bold px-12 py-4 rounded-full shadow-lg hover:bg-blue-100 transition transform hover:scale-105">
+      📅 Book Appointment
+    </a>
+    </section>
+  <!-- Pricing Section -->
+<section id="pricing" class="py-24 px-6 max-w-7xl mx-auto text-center">
+  <h3 class="text-4xl font-bold text-blue-500 mb-12 tracking-wide">Our Pricing Plans</h3>
 
-  <!-- Certifications -->
-  <section id="certifications" data-aos="fade-up">
-    <h2 class="section-title">Certifications</h2>
-    <div class="project-grid">
-      <div class="project-card">
-        <h3>HTML & CSS</h3>
-        <p>Great Learning - Semantic HTML, forms, layout, media queries.</p>
+  <!-- BASIC CATEGORY -->
+  <div class="mb-20">
+    <h4 class="text-3xl font-semibold text-white mb-10">🔹 Basic Website Packages</h4>
+    <div class="grid gap-10 md:grid-cols-3">
+      
+      <!-- Card 1 -->
+      <div class="bg-gray-800 rounded-xl shadow-lg p-8 hover:shadow-2xl transition">
+        <h5 class="text-2xl font-semibold text-blue-400 mb-2">Starter Portfolio</h5>
+        <p class="text-gray-300 mb-4">Perfect for individuals and freelancers.</p>
+        <div class="text-4xl font-bold text-green-500 mb-6">₹10,000</div>
+        <ul class="text-left text-gray-300 mb-6 space-y-2">
+          <li>✅ 3 Pages</li>
+          <li>✅ Mobile Responsive</li>
+          <li>✅ Basic SEO</li>
+        </ul>
+        <a href="#contact" class="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">Get Started</a>
       </div>
-      <div class="project-card">
-        <h3>JavaScript</h3>
-        <p>Great Learning - DOM, functions, loops, events.</p>
+
+      <!-- Card 2 -->
+      <div class="bg-gray-800 rounded-xl shadow-lg p-8 hover:shadow-2xl transition">
+        <h5 class="text-2xl font-semibold text-blue-400 mb-2">Business Site</h5>
+        <p class="text-gray-300 mb-4">For growing small businesses.</p>
+        <div class="text-4xl font-bold text-green-500 mb-6">₹15,000</div>
+        <ul class="text-left text-gray-300 mb-6 space-y-2">
+          <li>✅ 5 Pages</li>
+          <li>✅ Contact Form</li>
+          <li>✅ Delivery in 5 Days</li>
+        </ul>
+        <a href="#contact" class="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">Get Started</a>
       </div>
-      <div class="project-card">
-        <h3>Python Programming</h3>
-        <p>Great Learning - Basics, conditionals, functions, OOP.</p>
-      </div>
-      <div class="project-card">
-        <h3>Intro to AI</h3>
-        <p>Great Learning - Fundamentals of AI and real-world applications.</p>
+
+      <!-- Card 3 -->
+      <div class="bg-gray-800 rounded-xl shadow-lg p-8 hover:shadow-2xl transition">
+        <h5 class="text-2xl font-semibold text-blue-400 mb-2">Advanced Business</h5>
+        <p class="text-gray-300 mb-4">For businesses looking for more features.</p>
+        <div class="text-4xl font-bold text-green-500 mb-6">₹20,000</div>
+        <ul class="text-left text-gray-300 mb-6 space-y-2">
+          <li>✅ 7+ Pages</li>
+          <li>✅ Blog & Analytics</li>
+          <li>✅ Basic CMS</li>
+        </ul>
+        <a href="#contact" class="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">Get Started</a>
       </div>
     </div>
-  </section>
+  </div>
+
+  <!-- E-COMMERCE CATEGORY -->
+  <div class="mb-20">
+    <h4 class="text-3xl font-semibold text-white mb-10">🛒 E-Commerce Packages</h4>
+    <div class="grid gap-10 md:grid-cols-3">
+
+      <!-- Card 1 -->
+      <div class="bg-gray-800 rounded-xl shadow-lg p-8 hover:shadow-2xl transition">
+        <h5 class="text-2xl font-semibold text-blue-400 mb-2">Mini Shop</h5>
+        <p class="text-gray-300 mb-4">Start selling online quickly.</p>
+        <div class="text-4xl font-bold text-green-500 mb-6">₹25,000</div>
+        <ul class="text-left text-gray-300 mb-6 space-y-2">
+          <li>✅ Up to 10 Products</li>
+          <li>✅ Payment Gateway</li>
+          <li>✅ Delivery in 7 Days</li>
+        </ul>
+        <a href="#contact" class="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">Book Now</a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-gray-800 rounded-xl shadow-lg p-8 hover:shadow-2xl transition">
+        <h5 class="text-2xl font-semibold text-blue-400 mb-2">Standard Store</h5>
+        <p class="text-gray-300 mb-4">For medium-scale businesses.</p>
+        <div class="text-4xl font-bold text-green-500 mb-6">₹50,000</div>
+        <ul class="text-left text-gray-300 mb-6 space-y-2">
+          <li>✅ Unlimited Products</li>
+          <li>✅ Admin Panel</li>
+          <li>✅ Inventory System</li>
+        </ul>
+        <a href="#contact" class="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">Book Now</a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-gray-800 rounded-xl shadow-lg p-8 hover:shadow-2xl transition">
+        <h5 class="text-2xl font-semibold text-blue-400 mb-2">Premium E-Store</h5>
+        <p class="text-gray-300 mb-4">For large scale and growing brands.</p>
+        <div class="text-4xl font-bold text-green-500 mb-6">₹75,000</div>
+        <ul class="text-left text-gray-300 mb-6 space-y-2">
+          <li>✅ Custom Dashboard</li>
+          <li>✅ Multi-Vendor</li>
+          <li>✅ Delivery in 12–15 Days</li>
+        </ul>
+        <a href="#contact" class="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOM WEB APP CATEGORY -->
+  <div>
+    <h4 class="text-3xl font-semibold text-white mb-10">🛠️ Custom Web Apps</h4>
+    <div class="grid gap-10 md:grid-cols-3">
+
+      <!-- Card 1 -->
+      <div class="bg-gray-800 rounded-xl shadow-lg p-8 hover:shadow-2xl transition">
+        <h5 class="text-2xl font-semibold text-blue-400 mb-2">Startup MVP</h5>
+        <p class="text-gray-300 mb-4">Quickly launch your startup idea.</p>
+        <div class="text-4xl font-bold text-green-500 mb-6">₹60,000</div>
+        <ul class="text-left text-gray-300 mb-6 space-y-2">
+          <li>✅ Frontend + Backend</li>
+          <li>✅ REST APIs</li>
+          <li>✅ Delivery in 3 Weeks</li>
+        </ul>
+        <a href="#contact" class="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">Request Quote</a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-gray-800 rounded-xl shadow-lg p-8 hover:shadow-2xl transition">
+        <h5 class="text-2xl font-semibold text-blue-400 mb-2">Enterprise App</h5>
+        <p class="text-gray-300 mb-4">Tailored for large organizations.</p>
+        <div class="text-4xl font-bold text-green-500 mb-6">₹1,00,000</div>
+        <ul class="text-left text-gray-300 mb-6 space-y-2">
+          <li>✅ Authentication</li>
+          <li>✅ Admin Panel</li>
+          <li>✅ Deployment & Support</li>
+        </ul>
+        <a href="#contact" class="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">Request Quote</a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-gray-800 rounded-xl shadow-lg p-8 hover:shadow-2xl transition">
+        <h5 class="text-2xl font-semibold text-blue-400 mb-2">AI-Powered Platform</h5>
+        <p class="text-gray-300 mb-4">Smart apps with integrated AI.</p>
+        <div class="text-4xl font-bold text-green-500 mb-6">₹1,50,000</div>
+        <ul class="text-left text-gray-300 mb-6 space-y-2">
+          <li>✅ AI Models</li>
+          <li>✅ Realtime Analytics</li>
+          <li>✅ Delivery in 1–2 Months</li>
+        </ul>
+        <a href="#contact" class="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">Request Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+   <!-- Floating WhatsApp Button -->
+<a href="https://wa.me/9967745877" target="_blank"
+   class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-105 z-50"
+   aria-label="Chat on WhatsApp">
+  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M16.999 13.2c-.26-.13-1.535-.75-1.77-.84-.24-.09-.41-.13-.58.13-.17.26-.67.84-.82 1.01-.15.17-.3.19-.56.06-.26-.13-1.1-.4-2.1-1.3-.77-.68-1.29-1.51-1.44-1.77-.15-.26-.02-.4.11-.53.11-.11.26-.3.39-.44.13-.15.17-.26.26-.44.08-.17.04-.32-.02-.45-.06-.13-.58-1.4-.79-1.91-.2-.49-.4-.42-.58-.43h-.5c-.17 0-.44.06-.67.32-.24.26-.89.87-.89 2.1s.91 2.43 1.04 2.6c.13.17 1.8 2.75 4.37 3.86.61.27 1.08.43 1.45.55.61.19 1.16.16 1.59.1.49-.07 1.54-.63 1.76-1.25.22-.61.22-1.14.15-1.25-.06-.11-.24-.17-.5-.3z"/></svg>
+</a>
+
+
 
   <!-- Contact Section -->
-  <section id="contact" data-aos="fade-up">
-    <h2 class="section-title">Contact Me</h2>
-    <p>Have a project or want to connect? Drop a message below!</p>
-    <form action="mailto:tiwariashwin.49@gmail.com" method="POST" enctype="text/plain" class="contact-form">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit" class="btn">Send</button>
+  <section id="contact" class="py-20 px-6 max-w-4xl mx-auto text-center">
+    <h3 class="text-4xl font-bold text-blue-500 mb-8">Get In Touch</h3>
+    <p class="text-gray-300 mb-10 max-w-xl mx-auto">
+      We’d love to hear from you! Send us a message and we will get back to you promptly.
+    </p>
+    <form action="#" method="POST" class="bg-gray-800 p-8 rounded-lg shadow-lg space-y-6 text-left" novalidate>
+      <div>
+        <label for="name" class="block text-gray-300 font-semibold mb-2">Name</label>
+        <input id="name" name="name" type="text" required placeholder="Your full name" 
+               class="w-full px-4 py-3 rounded bg-gray-900 border border-gray-700 text-gray-200 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 transition" />
+      </div>
+      <div>
+        <label for="email" class="block text-gray-300 font-semibold mb-2">Email</label>
+        <input id="email" name="email" type="email" required placeholder="you@example.com" 
+               class="w-full px-4 py-3 rounded bg-gray-900 border border-gray-700 text-gray-200 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 transition" />
+      </div>
+      <div>
+        <label for="phone" class="block text-gray-300 font-semibold mb-2">Phone</label>
+        <input id="phone" name="phone" type="tel" required placeholder="+91 98765 43210" 
+               class="w-full px-4 py-3 rounded bg-gray-900 border border-gray-700 text-gray-200 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 transition" />
+      </div>
+      <div>
+        <label for="message" class="block text-gray-300 font-semibold mb-2">Message</label>
+        <textarea id="message" name="message" rows="4" required placeholder="Your message here..." 
+                  class="w-full px-4 py-3 rounded bg-gray-900 border border-gray-700 text-gray-200 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 transition resize-none"></textarea>
+      </div>
+      <button type="submit" 
+              class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg shadow-lg transition transform hover:scale-105">
+        Send Message
+      </button>
     </form>
-    <div class="social-icons">
-      <a href="https://www.linkedin.com/in/ashwin-tiwari-39a020342" target="_blank" rel="noopener noreferrer">
-        <img src="linkedin.png" alt="LinkedIn" />
-      </a>
-      <a href="https://www.instagram.com/ashwintiwari174/" target="_blank" rel="noopener noreferrer">
-        <img src="instagram.png" alt="Instagram" />
-      </a>
-    </div>
   </section>
 
-  <footer>
-    &copy; 2025 Ashwin Tiwari. All rights reserved.
-  </footer>
-
-  <!-- Typed.js -->
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init();
-
-    var typed = new Typed('#element', {
-      strings: ['Frontend Developer', 'React Developer', 'Tech Enthusiast'],
-      typeSpeed: 100,
-      backSpeed: 50,
-      loop: true
-    });
-  </script>
-
+  <footer class="mt-24 py-6 bg-gray-900 text-center text-gray-400 text-sm">
+  <div class="flex justify-center space-x-6 mb-3">
+    <a href="https://www.linkedin.com/in/ashwin-tiwari-39a020342" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" class="h-6 w-6 invert" alt="LinkedIn" />
+    </a>
+    <a href="mailto:tiwariashwin.49@gmail.com">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" class="h-6 w-6 invert" alt="Gmail" />
+    </a>
+    <a href="https://github.com/yourusername" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" class="h-6 w-6 invert" alt="GitHub" />
+    </a>
+  </div>
+  &copy; 2025 Hanovix. All rights reserved.
+</footer>
 </body>
 </html>
+
